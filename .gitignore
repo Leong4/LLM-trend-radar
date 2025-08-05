@@ -1,0 +1,11 @@
+*.pyc
+__pycache__/
+.env
+.vscode/
+
+# data & logs
+data/
+logs/
+
+# OS
+.DS_Store
