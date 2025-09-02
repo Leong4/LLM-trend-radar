@@ -7,7 +7,7 @@ from ..db.schema import PaperSchema as Paper
 from ..utils.hashing import sha1
 
 async def enrich_and_save(papers: list[Paper]):
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(follow_redirects=True) as client:
         progress = Progress(SpinnerColumn(), TextColumn("{task.description}"), TimeElapsedColumn(), transient=True)
         progress.start()
         task = progress.add_task("Downloading PDFs", total=len(papers))

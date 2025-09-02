@@ -1,7 +1,11 @@
 import datetime as dt
 from sqlalchemy import Column, DateTime, Integer, String, create_engine, ForeignKey
 from sqlalchemy.orm import declarative_base, sessionmaker
-from ..config import DATA_DIR
+try:
+    # absolute import (preferred when running scripts)
+    from llm_radar.config import DATA_DIR
+except Exception:  # fallback when imported relatively inside the package context
+    from ..config import DATA_DIR  # type: ignore
 
 
 Base = declarative_base()

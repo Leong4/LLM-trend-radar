@@ -1,9 +1,12 @@
-import os, pathlib, datetime as dt
+import os
+from pathlib import Path
 
-ROOT_DIR = pathlib.Path(__file__).resolve().parent
-DATA_DIR = ROOT_DIR / "data"
+PKG_DIR = Path(__file__).resolve().parent           # …/project1/llm_radar
+PROJECT_ROOT = PKG_DIR.parent                        # …/project1
+
+DATA_DIR = Path(os.getenv("TREND_RADAR_DATA_DIR", PROJECT_ROOT / "data"))
 PDF_DIR  = DATA_DIR / "papers_pdf"
-LOG_DIR  = ROOT_DIR / "logs"
+LOG_DIR  = PROJECT_ROOT / "logs"
 
 for d in (DATA_DIR, PDF_DIR, LOG_DIR):
     d.mkdir(parents=True, exist_ok=True)
