@@ -1,0 +1,43 @@
+# ---- 阈值与生命周期 ----
+thresholds:
+  tau_prob: 0.30
+  tau_full_young: 0.65
+  tau_full_mid: 0.60
+  tau_full_old: 0.55
+  tau_demote: 0.45
+lifecycle:
+  full_trial_days: 14
+  probation_ttl_days: 30
+
+# ---- UCB 与探索配额（周批会用到）----
+ucb:
+  c: 1.0
+quotas:
+  full_per_cluster: 20
+  explore_per_cluster: 5
+
+# ---- 白名单与关键词（特征用）----
+whitelists:
+  labs: ["DeepMind", "FAIR", "MSR", "Google", "OpenAI", "Tsinghua", "CMU", "Stanford"]
+keywords:
+  llm_rag: ["rag", "retrieval", "retriever", "embedding", "vector", "rerank", "agent", "memory", "chunks"]
+
+# ---- GitHub / arXiv 特征窗口与 CAP ----
+features:
+  github:
+    readme_len_max: 8000
+    delta_star_window_days: 7
+    commit_window_days: 14
+    uniq_issue_authors_window_days: 14
+    star_cap: 200
+    actor_cap: 30
+  arxiv:
+    mention_window_days: 7
+
+# ---- 预处理参数（Runner 使用）----
+preprocess:
+  ucb_threshold: 0.70
+  chunk_size: 1200
+  overlap: 200
+  pdf:
+    strip_references: true
